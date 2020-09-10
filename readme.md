@@ -33,5 +33,7 @@ Note Before running:
 The script uses environment variables to locate your library and the interval time.
 I used VSCode for developing and added them to `./vscode/launch.json`
 
-`library_path="path/to/your/test/library"`
-`interval=5`
+```
+library_path="path/to/your/test/library"
+interval=5
+```
