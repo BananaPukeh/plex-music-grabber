@@ -11,7 +11,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "env" : {
-                "library_path" : "C:\\Users\\rutge\\Development\\Hobby\\Python\\plex-music-grabber\\Demo Library",
+                "library_path" : "C:\\Users\\rutge\\Development\\Hobby\\Python\\plex-music-grabber\\demo-library",
                 "interval" : "60"
             }
         }

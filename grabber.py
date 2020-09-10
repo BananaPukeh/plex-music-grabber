@@ -43,6 +43,7 @@ def checkThemeSong(path):
 def grabMusic(name):
     music_query_string = urllib.parse.urlencode(
         {"search_query": name + " theme song"})
+    # Apply Filter for videos and under 4 minutes
     music_html_content = urllib.request.urlopen(
         "http://www.youtube.com/results?" + music_query_string + "&sp=EgIQAQ%253D%253D")
     music_search_results = re.findall(
@@ -61,10 +62,7 @@ def grabMusic(name):
     # Start downloading
     hiStream.download(output_path=("{}".format(folder)),
                       filename="{}".format(name))
-
-
 # Callbacks
-
 def downloadReady(stream, path):
     print("Music downloaded for " + path)
     processMusic(path)
@@ -75,11 +73,10 @@ def processMusic(path):
 
     # Move to library and rename mp3
     seriesPath = libraryPath + "/" + name + "/theme.mp3"
-
     shutil.move(path,seriesPath)
 
-#  Start
 
+#  Start
 print("Start monitoring for missing theme songs")
 print("Interval %d seconds"%interval)
 
