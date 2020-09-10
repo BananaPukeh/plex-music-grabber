@@ -7,6 +7,7 @@ import re
 import sys
 from pathlib import Path
 import time
+import shutil
 
 libraryPath = os.getenv('library_path')
 themeFileName = "theme.mp3"
@@ -75,7 +76,7 @@ def processMusic(path):
     # Move to library and rename mp3
     seriesPath = libraryPath + "/" + name + "/theme.mp3"
 
-    os.rename(path, seriesPath)
+    shutil.move(path,seriesPath)
 
 #  Start
 

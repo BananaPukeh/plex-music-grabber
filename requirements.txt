@@ -1,1 +1,1 @@
-pytube3
+git+https://gitlab.com/obuilds/public/pytube@ob-v1
