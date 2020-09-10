@@ -79,8 +79,6 @@ def processMusic(path):
     except:
         print("Failed to Move " + path)
 
-    
-
 
 #  Start
 print("Start monitoring for missing theme songs")
