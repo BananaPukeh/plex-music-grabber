@@ -12,7 +12,7 @@
             "console": "integratedTerminal",
             "env" : {
                 "library_path" : "C:\\Users\\rutge\\Development\\Hobby\\Python\\plex-music-grabber\\demo-library",
-                "interval" : "60"
+                "interval" : "10"
             }
         }
     ]

@@ -59,8 +59,8 @@ def grabMusic(name):
     hiStream = yt.streams.get_audio_only("mp4")
 
     # Start downloading
-    hiStream.download(output_path=("{}".format(folder)),
-                      filename="{}".format(name))
+    hiStream.download(output_path=("{}".format(folder) +'/'+ name),
+                      filename="{}".format("theme"))
 # Callbacks
 def downloadReady(stream, path):
     print("Music downloaded for " + path)
@@ -68,11 +68,18 @@ def downloadReady(stream, path):
 
 
 def processMusic(path):
-    name = Path(path).stem
+    parentDir = Path(path).parents[0]
+    name = parentDir.name
+    
+    try:
+        # Move to library and rename mp3
+        seriesPath = libraryPath + "/" + name + "/theme.mp3"
+        shutil.move(path,seriesPath)
+        shutil.rmtree(parentDir)
+    except:
+        print("Failed to Move " + path)
 
-    # Move to library and rename mp3
-    seriesPath = libraryPath + "/" + name + "/theme.mp3"
-    shutil.move(path,seriesPath)
+    
 
 
 #  Start
