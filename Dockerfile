@@ -13,3 +13,5 @@ ENV interval=3600
 VOLUME [ "/library" ]
 
 ENTRYPOINT [ "python", "-u", "grabber.py" ]
+
+LABEL MAINTAINER="Rutger Nijhuis"
