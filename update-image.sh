@@ -1,6 +1,5 @@
 #/bin/bash
+IMAGE=rutgernijhuis/plex-music-grabber
 
-
-docker build -t rutgernijhuis/plex-music-grabber .
-
-docker push rutgernijhuis/plex-music-grabber
+docker build -t $IMAGE .
+docker push $IMAGE
