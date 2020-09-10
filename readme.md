@@ -10,7 +10,7 @@ Plex Music Grabber is a tool that monitors your Plex TV Show library for missic 
 ```
 docker run -d \
 --name plex-music-grabber \
--v /path/to/tvshow:/library \
+-v /path/to/tvshows:/library \
 -e interval=3600 \
 --restart unless-stopped \
 rutgernijhuis/plex-music-grabber
