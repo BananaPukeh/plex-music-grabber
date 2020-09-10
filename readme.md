@@ -58,7 +58,7 @@ shows/
 │   ├── S01E02.mkv
 │   └── S01E03.mkv
 ├── Initial D/
-│   ├── Season 1
+│   ├── Season 1/
 │   │   ├── S01E01.mkv
 │   │   ├── S01E02.mkv
 │   │   └── S01E03.mkv
