@@ -41,19 +41,18 @@ def checkThemeSong(path):
 
 
 def grabMusic(name):
-    music_query_string = urllib.parse.urlencode(
+    query = urllib.parse.urlencode(
         {"search_query": name + " theme song"})
-    music_html_content = urllib.request.urlopen(
-        "http://www.youtube.com/results?" + music_query_string + "&sp=EgIQAQ%253D%253D")
-    music_search_results = re.findall(
-        r'\/watch\?v=(.{11})', music_html_content.read().decode())
-    music_url = ("http://www.youtube.com/watch?v=" + music_search_results[0])
+    content = urllib.request.urlopen(
+        "http://www.youtube.com/results?" + query + "&sp=EgIQAQ%253D%253D")
+    results = re.findall(
+        r'\/watch\?v=(.{11})', content.read().decode())
+    url = ("http://www.youtube.com/watch?v=" + results[0])
 
-    print(music_url)
+    print(url)
 
     # Download it
-    
-    yt = YouTube(music_url)        
+    yt = YouTube(url)        
     yt.register_on_complete_callback(downloadReady)
 
     hiStream = yt.streams.get_audio_only("mp4")

@@ -1,5 +1,6 @@
 # Plex Music Grabber
-Plex Music Grabber is a tool that monitors your Plex TV Show library for missic theme music. Unfortunately not all shows on Plex have theme songs, so I wrote this script that automatically downloads theme songs
+Plex Music Grabber is a tool that monitors your Plex TV Show library for missic theme music. Unfortunately not all shows on Plex have theme songs, so I wrote this script that automatically downloads theme songs.
+
 
 ## Installation
 
