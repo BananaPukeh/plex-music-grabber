@@ -31,6 +31,7 @@ def scanLibrary():
 
 # Checks whether given series dir has a theme song
 
+
 def checkThemeSong(path):
     contains = False
     for f in os.listdir(path):
@@ -52,15 +53,17 @@ def grabMusic(name):
     print(url)
 
     # Download it
-    yt = YouTube(url)        
+    yt = YouTube(url)
     yt.register_on_complete_callback(downloadReady)
 
     hiStream = yt.streams.get_audio_only("mp4")
 
     # Start downloading
-    hiStream.download(output_path=("{}".format(folder) +'/'+ name),
+    hiStream.download(output_path=("{}".format(folder) + '/' + name),
                       filename="{}".format("theme"))
 # Callbacks
+
+
 def downloadReady(stream, path):
     print("Music downloaded for " + path)
     processMusic(path)
@@ -69,11 +72,11 @@ def downloadReady(stream, path):
 def processMusic(path):
     parentDir = Path(path).parents[0]
     name = parentDir.name
-    
+
     try:
         # Move to library and rename mp3
         seriesPath = libraryPath + "/" + name + "/theme.mp3"
-        shutil.move(path,seriesPath)
+        shutil.move(path, seriesPath)
         shutil.rmtree(parentDir)
     except:
         print("Failed to Move " + path)
@@ -81,7 +84,7 @@ def processMusic(path):
 
 #  Start
 print("Start monitoring for missing theme songs")
-print("Interval %d seconds"%interval)
+print("Interval %d seconds" % interval)
 
 while True:
     scanLibrary()

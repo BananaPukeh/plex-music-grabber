@@ -1,1 +1,1 @@
-git+https://gitlab.com/obuilds/public/pytube@ob-v1
+pytube==10.4.1
