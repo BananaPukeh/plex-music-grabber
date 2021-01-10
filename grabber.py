@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 import time
 import shutil
+import requests
 
 libraryPath = os.getenv('library_path')
 themeFileName = "theme.mp3"
@@ -51,6 +52,7 @@ def grabMusic(name):
     url = ("http://www.youtube.com/watch?v=" + results[0])
 
     print(url)
+    notify("Theme music grabbed\n" + name)
 
     # Download it
     yt = YouTube(url)
@@ -80,6 +82,18 @@ def processMusic(path):
         shutil.rmtree(parentDir)
     except:
         print("Failed to Move " + path)
+
+
+def notify(message):
+    bot_token = os.getenv("telegram_token", "")
+    bot_chatID = os.getenv("telegram_chat_id", "")
+
+    if not bot_token == "" and not bot_chatID == "":
+        send_text = 'https://api.telegram.org/bot' + bot_token + \
+            '/sendMessage?disable_notification=true&chat_id=' + \
+            bot_chatID + '&parse_mode=Markdown&text=' + message
+
+        _ = requests.get(send_text)
 
 
 #  Start

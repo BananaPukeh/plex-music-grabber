@@ -2,6 +2,7 @@ version: "3.3"
 services:
   plex-music-grabber:
     image: rutgernijhuis/plex-music-grabber
+    build: .
     container_name: plex-music-grabber
     volumes:
       - ./demo-library:/library

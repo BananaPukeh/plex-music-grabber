@@ -32,6 +32,11 @@ services:
     network_mode: default
 ```
 
+### Telegram notifications
+Add these environment variables:
+- `telegram_chat_id`
+- `telegram_token`
+
 ## Post installation 
 3. Verify that the script is working by checking your show folders, the program should create a `theme.mp3` file.
 4. Make sure Plex uses your local assets in your media. Go to `Plex > Settings > Agents > Shows > {one/all of your agents}`
