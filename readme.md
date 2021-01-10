@@ -7,6 +7,7 @@ Plex Music Grabber is a tool that monitors your Plex TV Show library for missic 
 1. Mount the `/library` volume on your tv show directory
 2. Choose a scan interval (seconds) of your liking
 
+Docker CLI
 ```
 docker run -d \
 --name plex-music-grabber \
@@ -14,6 +15,21 @@ docker run -d \
 -e interval=3600 \
 --restart unless-stopped \
 rutgernijhuis/plex-music-grabber
+```
+
+Docker Compose
+```
+version: "3.3"
+services:
+  plex-music-grabber:
+    image: rutgernijhuis/plex-music-grabber
+    container_name: plex-music-grabber
+    volumes:
+      - ./my-library:/library
+    environment:
+      - interval=3600
+    restart: unless-stopped
+    network_mode: default
 ```
 
 ## Post installation 
@@ -27,11 +43,10 @@ rutgernijhuis/plex-music-grabber
 When you don't want a show folder to be searched for you can choose to ignore it.
 Do so by adding a `.themeignore` file in the directory
 
-
 # Running it locally
 If you want to run it locally, I suppose you know what you are doing.
 
-Tested on Python 3.8.5
+Tested on Python 3.8.7
 
 `pip install -r requirements.txt`
 
