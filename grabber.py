@@ -43,8 +43,9 @@ def checkThemeSong(path):
 
 
 def grabMusic(name):
+    encodedName = urllib.parse.quote(name)
     query = urllib.parse.urlencode(
-        {"search_query": name + " theme song -had-theme-songs"})
+        {"search_query": encodedName + " theme song -had-theme-songs"})
     content = urllib.request.urlopen(
         "http://www.youtube.com/results?" + query + "&sp=EgIQAQ%253D%253D")
     results = re.findall(
