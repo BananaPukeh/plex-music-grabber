@@ -1,10 +1,8 @@
 import os
-import pytube
 from pytube import YouTube
 import urllib.request
 import urllib.parse
 import re
-import sys
 from pathlib import Path
 import time
 import shutil
@@ -43,11 +41,12 @@ def checkThemeSong(path):
 
 
 def grabMusic(name):
-    encodedName = urllib.parse.quote(name)
-    query = urllib.parse.urlencode(
-        {"search_query": encodedName + " theme song -had-theme-songs"})
+    # encodedName = urllib.parse.quote(name)
+    query = urllib.parse.urlencode({"search_query": name + " theme song -had-theme-songs"})
+    
+    searchUrl = "http://www.youtube.com/results?" + query + "&sp=EgIQAQ%253D%253D"
     content = urllib.request.urlopen(
-        "http://www.youtube.com/results?" + query + "&sp=EgIQAQ%253D%253D")
+        searchUrl)
     results = re.findall(
         r'\/watch\?v=(.{11})', content.read().decode())
     url = ("http://www.youtube.com/watch?v=" + results[0])

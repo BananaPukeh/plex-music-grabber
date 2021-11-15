@@ -1,2 +1,2 @@
-pytube==10.4.1
+pytube==11.0.1
 requests
