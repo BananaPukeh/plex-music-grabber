@@ -64,6 +64,8 @@ I used VSCode for developing and added them to `./vscode/launch.json`
 library_path="path/to/your/test/library"
 interval=5
 ```
+Or set env variables in your CLI
+
 
 # Library structure
 
