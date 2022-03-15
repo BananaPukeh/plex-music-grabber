@@ -51,7 +51,7 @@ Do so by adding a `.themeignore` file in the directory
 # Running it locally
 If you want to run it locally, I suppose you know what you are doing.
 
-Tested on Python 3.8.7
+Tested on Python 3.9
 
 `pip install -r requirements.txt`
 
@@ -64,8 +64,8 @@ I used VSCode for developing and added them to `./vscode/launch.json`
 library_path="path/to/your/test/library"
 interval=5
 ```
-Or set env variables in your CLI
 
+Or set env variables in your CLI.
 
 # Library structure
 
