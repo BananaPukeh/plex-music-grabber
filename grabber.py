@@ -1,17 +1,15 @@
 import os
-from pytube import YouTube
 import urllib.request
 import urllib.parse
 import re
-from pathlib import Path
 import time
-import shutil
 import requests
+import yt_dlp
+
 
 libraryPath = os.getenv('library_path')
 themeFileName = "theme.mp3"
 themeIgnoreFile = ".themeignore"
-folder = "downloads"
 interval = int(os.getenv('interval', "3600"))
 
 
@@ -26,7 +24,7 @@ def scanLibrary():
         if os.path.isdir(seriesPath):
             if not checkThemeSong(seriesPath):
                 print("%s doesn't have a theme song" % name)
-                grabMusic(name)
+                grabMusic(name, seriesPath)
 
 # Checks whether given series dir has a theme song
 
@@ -40,10 +38,11 @@ def checkThemeSong(path):
     return contains
 
 
-def grabMusic(name):
+def grabMusic(name, seriesPath):
     query = urllib.parse.urlencode(
         {"search_query": name + " theme song -had-theme-songs"})
 
+    # TODO: Search using yt_dlp library
     searchUrl = "http://www.youtube.com/results?" + query + "&sp=EgIQAQ%253D%253D"
     content = urllib.request.urlopen(
         searchUrl)
@@ -54,34 +53,26 @@ def grabMusic(name):
     print(url)
     notify("Theme music grabbed\n" + name)
 
-    # Download it
-    yt = YouTube(url)
-    yt.register_on_complete_callback(downloadReady)
+    download(url, seriesPath)
 
-    hiStream = yt.streams.get_audio_only("mp4")
 
-    # Start downloading
-    hiStream.download(output_path=("{}".format(folder) + '/' + name),
-                      filename="{}".format("theme"))
+def download(url, seriesPath):
+    options = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+        }],
+        'paths': {
+            'temp': 'temp',
+        },
+        'outtmpl': seriesPath + '/theme.%(ext)s'
+    }
+
+    with yt_dlp.YoutubeDL(options) as ydl:
+        error_code = ydl.download([url])
+
 # Callbacks
-
-
-def downloadReady(stream, path):
-    print("Music downloaded for " + path)
-    processMusic(path)
-
-
-def processMusic(path):
-    parentDir = Path(path).parents[0]
-    name = parentDir.name
-
-    try:
-        # Move to library and rename mp3
-        seriesPath = libraryPath + "/" + name + "/theme.mp3"
-        shutil.move(path, seriesPath)
-        shutil.rmtree(parentDir)
-    except:
-        print("Failed to Move " + path)
 
 
 def notify(message):
