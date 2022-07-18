@@ -1,2 +1,2 @@
-pytube==12
 requests
+yt-dlp

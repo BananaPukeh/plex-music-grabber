@@ -8,10 +8,10 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
+            "program": "grabber.py",
             "console": "integratedTerminal",
             "env" : {
-                "library_path" : "C:\\Users\\rutge\\Development\\Hobby\\Python\\plex-music-grabber\\demo-library",
+                "library_path" : "./downloads/shows",
                 "interval" : "10"
             }
         }
