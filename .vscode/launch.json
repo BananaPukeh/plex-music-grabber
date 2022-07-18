@@ -5,13 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "Python: Grabber",
             "type": "python",
             "request": "launch",
             "program": "grabber.py",
             "console": "integratedTerminal",
             "env" : {
-                "library_path" : "./downloads/shows",
+                "library_path" : "./library",
                 "interval" : "10"
             }
         }
