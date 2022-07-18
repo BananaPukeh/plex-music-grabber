@@ -8,11 +8,19 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Grabber",
+            "type": "python",
+            "request": "launch",
             "program": "grabber.py",
             "console": "integratedTerminal",
-            "env" : {
-                "library_path" : "./downloads/shows",
-                "interval" : "10"
+            "env": {
+                "library_path": "./library",
+                "interval": "10"
             }
         }
     ]
