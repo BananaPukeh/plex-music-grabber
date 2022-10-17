@@ -7,6 +7,6 @@ services:
     volumes:
       - ./library:/library
     environment:
-      - interval=60
+      - interval=10
     restart: unless-stopped
     network_mode: default
