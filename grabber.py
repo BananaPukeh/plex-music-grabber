@@ -24,6 +24,7 @@ def scanLibrary():
         if os.path.isdir(seriesPath):
             if not checkThemeSong(seriesPath):
                 print("%s doesn't have a theme song" % name)
+                cleanUnfinishedDownloads(seriesPath)
                 grabMusic(name, seriesPath)
 
 # Checks whether given series dir has a theme song
@@ -36,6 +37,11 @@ def checkThemeSong(path):
             contains = True
             break
     return contains
+
+def cleanUnfinishedDownloads(seriesPath):
+    for f in os.listdir(seriesPath):
+        if f.startswith("theme.webm"):
+            os.remove(os.path.join(seriesPath, f))
 
 
 def grabMusic(name, seriesPath):
@@ -63,11 +69,7 @@ def download(url, seriesPath):
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
         }],
-        'paths': {
-            'temp': 'temp',
-        },
         'outtmpl': seriesPath + '/theme.%(ext)s',
-        'overwrites' : True,
     }
 
     with yt_dlp.YoutubeDL(options) as ydl:
