@@ -63,10 +63,8 @@ def download(url, seriesPath):
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
         }],
-        'paths': {
-            'temp': 'temp',
-        },
-        'outtmpl': seriesPath + '/theme.%(ext)s'
+        'outtmpl': seriesPath + '/theme.%(ext)s',
+        'overwrites' : True,
     }
 
     with yt_dlp.YoutubeDL(options) as ydl:

@@ -93,3 +93,8 @@ shows/
     ├── S01E03.mkv
     └── theme.mp3
 ```
+
+# Updating image
+
+- Create a new tag
+- run `update-image.sh`
