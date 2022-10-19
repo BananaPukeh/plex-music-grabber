@@ -1,5 +1,10 @@
 # Plex Music Grabber
-Plex Music Grabber is a tool that monitors your Plex TV Show library for missic theme music. Unfortunately not all shows on Plex have theme songs, so I wrote this script that automatically downloads theme songs.
+Plex Music Grabber is a tool that monitors your Plex TV Show library for missing theme music. Unfortunately not all shows on Plex have theme songs, so I wrote this script that automatically downloads theme songs.
+
+## Key features
+- Download missing theme songs
+- Works with TV shows, which are also provided by Plex
+- Works with Movies, which are not provided by Plex.
 
 
 ## Installation
@@ -11,8 +16,10 @@ Docker CLI
 ```
 docker run -d \
 --name plex-music-grabber \
--v /path/to/tvshows:/library \
+-v /path/to/tvshows:/library/tvshows \
+-v /path/to/movies:/library/movies \
 -e interval=3600 \
+-e library_path=/library/tvshows,/library/movies \
 --restart unless-stopped \
 rutgernijhuis/plex-music-grabber
 ```
@@ -25,12 +32,16 @@ services:
     image: rutgernijhuis/plex-music-grabber
     container_name: plex-music-grabber
     volumes:
-      - ./my-library:/library
+      - ./my-library/movies:/library/movies
+      - ./my-library/tvshows:/library/tvshows
     environment:
       - interval=3600
+      - library_path=/library/movies,/library/tvshows
     restart: unless-stopped
     network_mode: default
 ```
+
+`library_path` variable needs one or more mounted paths to you library containing sub folders with media folders. Multiple paths needs to be comma seperated.
 
 ### Telegram notifications
 Add these environment variables:
@@ -44,11 +55,13 @@ Add these environment variables:
 6. Go to a show in Plex and refresh it's metadata, the song should play :)
 
 ## Options
-### Ignoring shows
+### Ignoring items
 When you don't want a show folder to be searched for you can choose to ignore it.
 Do so by adding a `.themeignore` file in the directory
 
 # Running it locally
+
+## Python native
 If you want to run it locally, I suppose you know what you are doing.
 
 Tested on Python 3.9

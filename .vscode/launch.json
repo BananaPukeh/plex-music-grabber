@@ -8,11 +8,11 @@
             "name": "Python: Grabber",
             "type": "python",
             "request": "launch",
-            "program": "grabber.py",
+            "program": "src/grabber.py",
             "console": "integratedTerminal",
             "env" : {
-                "library_path" : "./library",
-                "interval" : "10"
+                "library_path" : "./library/Anime,./library/Shows,./library/Movies",
+                "interval" : "10",
             }
         }
     ]
