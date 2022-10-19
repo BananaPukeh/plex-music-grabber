@@ -7,13 +7,9 @@ RUN pip install -r requirements.txt
 RUN apt update
 RUN apt install ffmpeg -y
 
+COPY src/ .
 
-COPY grabber.py .
-
-ENV library_path="/library"
 ENV interval=3600
-
-VOLUME [ "/library" ]
 
 ENTRYPOINT [ "python", "-u", "grabber.py" ]
 
