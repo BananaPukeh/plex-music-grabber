@@ -40,7 +40,7 @@ def checkThemeSong(path):
 
 def cleanUnfinishedDownloads(seriesPath):
     for f in os.listdir(seriesPath):
-        if f.startswith("theme.webm"):
+        if f.startswith("theme.webm") or f.startswith("theme.m4a"):
             os.remove(os.path.join(seriesPath, f))
 
 
