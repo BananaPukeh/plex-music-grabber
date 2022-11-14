@@ -9,6 +9,6 @@ services:
     environment:
       - interval=10
       - library_path=/library/Anime,/library/Shows,/library/Movies
-      - force=true
+      - force=false
     restart: unless-stopped
     network_mode: default
