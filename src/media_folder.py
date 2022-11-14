@@ -11,8 +11,7 @@ class MediaFolder(Folder):
 
     def update_theme_song(self, force = False):
         if (not self.has_theme_song() or force) and not self.is_ignored():
-            self.__grab_theme_song()
-            return True
+            return self.__grab_theme_song()
         else:
            return False
 
@@ -23,15 +22,21 @@ class MediaFolder(Folder):
         return os.path.isfile(os.path.join(self.path, ".themeignore"))
 
     def __grab_theme_song(self):
-        self.__clean_unfinished_downloads()
-        url = self.__search_theme_song()
-        self.__download_theme_song(url)
-        Notify.notify("Downloaded theme song for '%s'\n\n'%s'" % (self.get_name(), url))
-
+        try:
+            self.__clean_unfinished_downloads()
+            url = self.__search_theme_song()
+            self.__download_theme_song(url)
+            Notify.notify("Downloaded theme song for '%s'\n\n'%s'" % (self.get_name(), url))
+            return True
+        except Exception as e:
+            Notify.notify("Failed to download theme song for '%s'\n\n'%s'" % (self.get_name(), e))
+            return False
 
     def __search_theme_song(self):
+        searchTerms = "('ost' | 'theme song' | 'op' | 'opening')"
+
         query = urllib.parse.urlencode(
-            {"search_query": self.get_name() + " OST"}
+            {"search_query": self.get_name() + " " + searchTerms}
         )
 
         # TODO: Search using yt_dlp library

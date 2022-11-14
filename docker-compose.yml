@@ -5,11 +5,10 @@ services:
     build: .
     container_name: plex-music-grabber
     volumes:
-      - ./library/Anime:/library/Anime
-      - ./library/Shows:/library/Shows
-      - ./library/Movies:/library/Movies
+      - ./library:/library
     environment:
       - interval=10
       - library_path=/library/Anime,/library/Shows,/library/Movies
+      - force=false
     restart: unless-stopped
     network_mode: default
