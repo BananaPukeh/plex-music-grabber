@@ -22,7 +22,6 @@ class MediaFolder(Folder):
         return os.path.isfile(os.path.join(self.path, ".themeignore"))
 
     def __grab_theme_song(self):
-
         try:
             self.__clean_unfinished_downloads()
             url = self.__search_theme_song()
@@ -34,8 +33,10 @@ class MediaFolder(Folder):
             return False
 
     def __search_theme_song(self):
+        searchTerms = "('ost' | 'theme song' | 'op' | 'opening')"
+
         query = urllib.parse.urlencode(
-            {"search_query": self.get_name() + " OST"}
+            {"search_query": self.get_name() + " " + searchTerms}
         )
 
         # TODO: Search using yt_dlp library
