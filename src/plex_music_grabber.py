@@ -2,14 +2,16 @@ import time
 from media_library import MediaLibrary
 from notify import Notify
 
+
 class PlexMusicGrabber:
-    def __init__(self, library_paths, interval):
+    def __init__(self, library_paths, interval, force):
         assert isinstance(library_paths, list), "Library paths must be a list"
         assert isinstance(interval, int), "Interval must be an integer"
         assert interval > 0, "Interval must be greater than 0"
 
         self.library_paths = library_paths
         self.interval = interval
+        self.force = force
 
     def run(self):
         print("=== Plex Music Grabber ===")
@@ -28,15 +30,16 @@ class PlexMusicGrabber:
             library = MediaLibrary(path)
             libraries.append(library)
 
-        Notify.notify("Start updating theme songs for %d libraries" % len(libraries))    
+        Notify.notify("Start updating theme songs for %d libraries" %
+                      len(libraries))
 
         results = []
         for library in libraries:
-            results.append(library.update_theme_songs())
+            results.append(library.update_theme_songs(self.force))
 
         msg = "Finished updating theme songs\n"
         for result in results:
-            msg += "`%s` new: %d total: %d \n" % (result[0], result[2], result[1])
-        
-        Notify.notify(msg)
+            msg += "`%s` new: %d total: %d \n" % (
+                result[0], result[2], result[1])
 
+        Notify.notify(msg)
