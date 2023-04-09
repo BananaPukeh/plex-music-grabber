@@ -21,10 +21,12 @@ jobs:
       #  Create tag based on date
       - name: Create tag
         id: tag
-        run: echo ::set-output name=tag::$(date +'%Y.%m.%d')
+        # switch to new syntax
+        run: echo "TAG = $(date +'%Y.%m.%d')" >> $GITHUB_ENV
+
       -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: rutgernijhuis/plex-music-grabber:latest,rutgernijhuis/plex-music-grabber:${{ steps.tag.outputs.tag }}
+          tags: rutgernijhuis/plex-music-grabber:latest,rutgernijhuis/plex-music-grabber:$TAG"
