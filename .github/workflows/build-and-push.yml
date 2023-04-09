@@ -12,7 +12,7 @@ jobs:
         run: echo "TAG=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
       - 
         name: Test Tag
-        run: echo $TAG
+        run: echo rutgernijhuis/plex-music-grabber:$TAG
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
