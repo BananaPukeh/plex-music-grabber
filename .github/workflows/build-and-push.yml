@@ -27,6 +27,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: 
-            - rutgernijhuis/plex-music-grabber:latest
-            - rutgernijhuis/plex-music-grabber:${{ steps.tag.outputs.tag }}
+          tags: rutgernijhuis/plex-music-grabber:latest,rutgernijhuis/plex-music-grabber:${{ steps.tag.outputs.tag }}
