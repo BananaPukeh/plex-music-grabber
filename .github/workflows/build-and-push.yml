@@ -6,13 +6,6 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - 
-        name: Create tag
-        id: tag
-        run: echo "TAG=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
-      - 
-        name: Test Tag
-        run: echo rutgernijhuis/plex-music-grabber:$TAG
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -25,10 +18,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Create tag
+        id: tag
+        run: echo ::set-output name=tag::$(date +'%Y.%m.%d')
       -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
-          #  Use the tag created earlier
-          tags: rutgernijhuis/plex-music-grabber:latest,rutgernijhuis/plex-music-grabber:v$TAG
+          tags: rutgernijhuis/plex-music-grabber:latest,rutgernijhuis/plex-music-grabber:${{ steps.tag.outputs.tag }}
