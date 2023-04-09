@@ -1,13 +1,13 @@
 name: build
 run-name: Build new version
 on:
-# Run on master branch
+  # Run on master branch
   push:
     branches:
       - master
   schedule:
-  # Run every sunday at 08:00
-    - cron: '0 8 * * 0'
+    # Run every sunday at 23:00
+    - cron: '0 23 * * 0'
 jobs:
   # https://github.com/marketplace/actions/build-and-push-docker-images
   docker:
