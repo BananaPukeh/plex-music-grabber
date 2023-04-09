@@ -6,6 +6,13 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - 
+        name: Create tag
+        id: tag
+        run: echo "TAG=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
+      - 
+        name: Test Tag
+        run: echo $TAG
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -18,9 +25,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Create tag
-        id: tag
-        run: echo "TAG=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
       -
         name: Build and push
         uses: docker/build-push-action@v4
