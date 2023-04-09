@@ -18,15 +18,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      #  Create tag based on date
       - name: Create tag
         id: tag
-        # switch to new syntax
         run: echo "TAG = $(date +'%Y.%m.%d')" >> $GITHUB_ENV
-
       -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: rutgernijhuis/plex-music-grabber:latest,rutgernijhuis/plex-music-grabber:$TAG"
+          #  Use the tag created earlier
+          tags: rutgernijhuis/plex-music-grabber:latest,rutgernijhuis/plex-music-grabber:${{ steps.tag.outputs.TAG }}
