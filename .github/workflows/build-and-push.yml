@@ -31,4 +31,4 @@ jobs:
         with:
           push: true
           #  Use the tag created earlier
-          tags: rutgernijhuis/plex-music-grabber:latest,rutgernijhuis/plex-music-grabber:$TAG
+          tags: rutgernijhuis/plex-music-grabber:latest,rutgernijhuis/plex-music-grabber:${{TAG}}
