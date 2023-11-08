@@ -7,7 +7,7 @@ interval = int(os.getenv('interval', "3600"))
 force = os.getenv('force', "false") == "true"
 
 if force:
-    print("Warning: Force update is enabled, everything will be downloaded again.")
+    print("Warning: Force update is enabled, everything will be downloaded again")
 
 if library_paths:
     paths = library_paths.split(",")
