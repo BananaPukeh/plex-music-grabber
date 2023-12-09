@@ -1,4 +1,5 @@
 import os.path;
+import re;
 
 class Folder:
     def __init__(self, path):
@@ -8,4 +9,10 @@ class Folder:
         self.path = path
 
     def get_name(self):
-        return os.path.basename(self.path)
+        name = os.path.basename(self.path)
+        # Strip off imdb/tmdb/tvdb id
+        # https://support.plex.tv/articles/naming-and-organizing-your-movie-media-files/
+        # https://support.plex.tv/articles/naming-and-organizing-your-tv-show-files/
+        name = re.sub(r'\{(imdb|tmdb|tvdb)-(tt)?[0-9]*\}', '', name)
+        
+        return name;
