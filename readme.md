@@ -5,6 +5,7 @@ Plex Music Grabber is a tool that monitors your Plex TV Show library for missing
 - Download missing theme songs
 - Works with TV shows, which are also provided by Plex
 - Works with Movies, which are not provided by Plex.
+- Supports movie/show folders named like: `Movie (year) {tmdb-12345}`
 
 
 ## Installation
